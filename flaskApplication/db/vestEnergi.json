@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Vest Energi",
+        "pricingModel": "fixed",
+        "monthlyFee": 0,
+        "fixedPrice": 0.65,
+        "fixedPricePeriod": 12
+    }
+]

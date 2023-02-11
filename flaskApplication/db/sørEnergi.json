@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Sør Energi",
+        "pricingModel": "spot-monthly",
+        "monthlyFee": 25,
+        "spotPrice": 0.6
+    }
+]

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<h1>Property Usage</h1>
+<form action=" {{ url_for('result') }}" method="post">
+    <label for="property-type">Velg Bolig Type:</label>
+    <select id="property-type" name="property">
+        {% for property_type in property_types %}
+        <option value="{{ property_type }}">{{ property_type }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <label for="size">Velg Bolig Størrelse:</label>
+    <select id="size" name="size">
+        {% for size in property_size_interval %}
+        <option value="{{ size }}">{{ size }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <label for="last_bill">Beløp På Din Siste Regnig:</label>
+    <input type="text" , id="last_bill" name="last_bill">
+    <br><br>
+
+
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
