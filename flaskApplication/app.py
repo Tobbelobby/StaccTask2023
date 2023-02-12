@@ -85,9 +85,6 @@ def result():
      except ValueError:
           return render_template('index.html', property_types=db.keys(), property_size_interval=property_size_interval)
 
-     print(total_consumption,estimated_usage)
-     print(last_bill, total_cost_based_on_spot)
-     print(energy_efficient,good_or_bad)
 
      return render_template("result.html", 
                            selected_value = selected_value, 
@@ -119,6 +116,6 @@ app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
 if __name__ == "__main__":
-    #from waitress import serve
-    #serve(app, host="0.0.0.0", port=8080)
-    app.run(debug=True) # Should be false if it is deployed
+    from waitress import serve
+    serve(app, host="0.0.0.0")
+    #app.run(debug=True) # Should be false if it is deployed
