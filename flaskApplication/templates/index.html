@@ -9,7 +9,14 @@
 {% block body %}
 
 
-<h1>Property Usage</h1>
+<h1>Din Strøm Oversikt </h1>
+<p>
+    Vi henter ut ditt strømforbruk fra forrige måned. <br>
+    Vi gir deg en oversikt over forbruket ditt. <br>
+    Vårt mål er å hjelpe deg spare på strømregningen. <br>
+    Vi gir også tips om billigere strømavtaler for å redusere kostnadene dine. <br>
+
+</p>
 <form action=" {{ url_for('result') }}" method="post">
     <label for="property-type">Velg Bolig Type:</label>
     <select id="property-type" name="property">

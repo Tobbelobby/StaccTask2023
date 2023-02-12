@@ -134,3 +134,24 @@ nav a {
     font-weight: bold;
     padding: 0 20px;
 }
+
+
+@media only screen and (max-width: 800px) {
+    .left {
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
+        padding-left: 0;
+    }
+}
+
+.left {
+    width: 600px;
+}
+
+.right {
+    width: calc(100% - 600px);
+    padding-left: 20px;
+}

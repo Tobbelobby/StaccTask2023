@@ -19,4 +19,103 @@ paths:
             application/json:
               schema:
                 type: object
+                items:
+                  type: object
+  /consumed/{hour}:
+    get:
+      summary: Retrieve a json object of power usage by hour
+      operationId: consumed
+      parameters:
+        - in: path
+          name: hour
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hour:
+                    type: integer
+                  consumption:
+                    type: number
 
+
+
+
+  /property:
+    get:
+      summary: Retrieve a json object of all norm Property info
+      operationId: property
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+  /property/{name}:
+    get:
+      summary: Retrieve a json object of norm property info
+      operationId: property
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+  
+
+
+
+
+  /power_plans:
+    get:
+      summary: Retrieve a json object of all Power plans
+      operationId: power_plans
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+
+  /power_plans/{name}:
+    get:
+      summary: Retrieve a json object of power plans by name
+      operationId: get_power_plans
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+  
+        

@@ -40,6 +40,7 @@ class GetConsumedByIndex(Resource):
     """
     def get(self, index:int) -> json:
         try:
+            print(index)
             item = db_consumed[index]
             return jsonify({'data': item})
         except IndexError:
@@ -70,7 +71,12 @@ class GetPowerPlans(Resource):
 class GetPowerPlansByName(Resource):
         def get(self, name:str) -> json:
             try:
-                item = db_property[name]
-                return jsonify({name: item})
+                name = name.replace("_", " ")
+                item = db_powerPlans
+                for power_plan_name in item:
+                     if power_plan_name['name'] == name:
+                        return jsonify({name: power_plan_name})
+                return jsonify({'Name not in db'})
+                     
             except IndexError:
                 return jsonify({'message': 'Type not found'}), 404

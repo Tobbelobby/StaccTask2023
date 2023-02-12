@@ -1,8 +1,0 @@
-[
-    {
-        "name": "Nord Energi",
-        "pricingModel": "spot-hourly",
-        "monthlyFee": 0,
-        "spotPrice": 0.5
-    }
-]

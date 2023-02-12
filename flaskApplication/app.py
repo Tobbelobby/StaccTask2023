@@ -102,13 +102,13 @@ def result():
 # Api end endpoints /api/docs/
 
 api.add_resource(GetConsumed,'/api/consumed/')
-api.add_resource(GetConsumedByIndex, '/get_consumed/<int:index>/')
+api.add_resource(GetConsumedByIndex, '/api/consumed/<int:index>/')
 
 api.add_resource(GetProperty,'/api/property/')
-api.add_resource(GetPropertyValueByType,'/api/get_property/<string:type>')
+api.add_resource(GetPropertyValueByType,'/api/property/<string:type>')
 
-api.add_resource(GetPowerPlans,'/api/powerPlans/')
-api.add_resource(GetPowerPlansByName,'/api/get_PowerPlans/<string:name>')
+api.add_resource(GetPowerPlans,'/api/power_plans/')
+api.add_resource(GetPowerPlansByName,'/api/power_plans/<string:name>')
 
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
