@@ -1,4 +1,3 @@
-#import requests
 from flask import Flask, render_template, request
 from flask_restful import Api
 from data_manager import DataManager
@@ -116,6 +115,6 @@ app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
 if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0")
-    #app.run(debug=True) # Should be false if it is deployed
+    #from waitress import serve
+    #serve(app, host="0.0.0.0")
+    app.run(debug=True) # Should be false if it is deployed

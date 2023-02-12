@@ -16,11 +16,11 @@ db_powerPlans = db_powerPlans.read_data()
 SWAGGER_URL = '/api/docs'
 API_URL = '/static/swagger.yml'
 swaggerui_blueprint = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    API_URL,
-    config={
-        'app_name': "My REST API"
-    }
+   SWAGGER_URL,
+   API_URL,
+   config={
+       'app_name': "My REST API"
+   }
 )
 
 
