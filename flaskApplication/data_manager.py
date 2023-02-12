@@ -1,7 +1,7 @@
 import json
 
 class DataManager:
-    def __init__(self, filename):
+    def __init__(self, filename:str):
         self.filename = filename
     
     def read_data(self):

@@ -1,9 +1,14 @@
 #import requests
-import json
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
+from flask_restful import Api
 from data_manager import DataManager
+from flask_swagger import swagger
+from RESTapi import *
+
+
 
 app = Flask(__name__)
+api = Api(app)
 
 
 db_property = DataManager('db/property_type.json')
@@ -14,7 +19,8 @@ db_consumption = DataManager('db/consumptionSpot.json')
 db_consumed = db_consumption.read_data()
 
 @app.route('/')
-def index():
+@app.route('/home')
+def home():
     property_size_interval = ['45','60','60','70','70','85','85','90',
                               '90','110','110','120','120','140',
                               '140','150','150','180','180','200']
@@ -35,9 +41,11 @@ def result():
         sum(d["consumption"] for d in db_consumed if "consumption" in d),
         2
         )
-    
+
+
 
     estimated_kwh_price = round(float(last_bill) / total_consumption,1)
+
 
 
     # The price based on spot 
@@ -56,7 +64,6 @@ def result():
         for item in property_data:
             if int(item['size']) == size:
                  estimated_usage = int(item['usage'])
-    print(estimated_usage)
 
     # Green or not Green "not the best way to find energy efficient" and mean usage is pronely not energy efficient 
     energy_efficient = bool
@@ -65,18 +72,19 @@ def result():
     else:
          energy_efficient = False
 
-    print(energy_efficient)
     
+
+  
     #God or bad --- If dont have spot price is often bad god = True else bad 
     good_or_bad = bool
-    if int(last_bill) > total_cost_based_on_spot:
+    if float(last_bill) <= total_cost_based_on_spot:
          good_or_bad = True 
     else:
          good_or_bad = False
 
-
-  
-    
+    print(total_consumption,estimated_usage)
+    print(last_bill, total_cost_based_on_spot)
+    print(energy_efficient,good_or_bad)
 
     return render_template("result.html", 
                            selected_value = selected_value, 
@@ -91,11 +99,19 @@ def result():
                            )
 
 
+# Api end endpoints /api/docs/
+
+api.add_resource(GetConsumed,'/api/consumed/')
+api.add_resource(GetConsumedByIndex, '/get_consumed/<int:index>/')
+
+api.add_resource(GetProperty,'/api/property/')
+api.add_resource(GetPropertyValueByType,'/api/get_property/<string:type>')
+
+api.add_resource(GetPowerPlans,'/api/powerPlans/')
+api.add_resource(GetPowerPlansByName,'/api/get_PowerPlans/<string:name>')
 
 
-@app.route('/lookerStudio')
-def lookerStudio():
-    return render_template('lookerStudio.html')
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
 

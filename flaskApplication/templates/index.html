@@ -7,6 +7,8 @@
 
 
 {% block body %}
+
+
 <h1>Property Usage</h1>
 <form action=" {{ url_for('result') }}" method="post">
     <label for="property-type">Velg Bolig Type:</label>
@@ -24,7 +26,8 @@
     </select>
     <br><br>
     <label for="last_bill">Beløp På Din Siste Regnig:</label>
-    <input type="text" , id="last_bill" name="last_bill">
+    <input type="text" , id="last_bill" name="last_bill" , pattern="-?\d+(\.\d{0,2})?"
+        title="Please enter a float like (1200.30)">
     <br><br>
 
 

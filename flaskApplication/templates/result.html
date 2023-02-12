@@ -1,113 +1,248 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Total Oversikt</title>
-</head>
+{% block head %}
 
-<body>
-    <h1>Total Oversikt</h1>
-    <p>Bolig type: {{ selected_value }}</p>
-    <p>Størrelse: {{ size_of_property }} m<sup>2</sup></p>
-    <p>Siste Betalte Regning: {{ last_bill }} Kr</p>
-    <p>Ditt Forbruk: {{ total_consumption }} kWh</p>
-    <p>Estimert kwh pris {{ estimated_kwh_price }} øre</p>
+{% endblock %}
+
+{% block body %}
+
+
+<h1>Totaloversikt</h1>
+<div class="iframe-container-user">
+    <div class="text-container">
+        <p>Bolig type: {{ selected_value }}</p>
+        <p>Størrelse: {{ size_of_property }}m<sup>2</sup> </p>
+        <p>Din siste regnin: {{ last_bill }} Kr</span></p>
+        <p>Ditt forbruk: {{ total_consumption }} kWh</span></p>
+        <p>Estimert kWh pris: {{ estimated_kwh_price }} øre</span></p>
+    </div>
     <iframe width="600" height="450"
         src="https://lookerstudio.google.com/embed/reporting/6309ce49-a3b6-45d8-8d82-f901d38eddce/page/PrBFD"
         frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<h2>Estimater</h2>
+<div class="container">
+    <div class="left">
+        <p class="estimate"> Kostnad med spot pris:</p>
+        <p class="estimate"> {{ total_cost_based_on_spot }} Kr</p>
+        <p class="estimate">Gjennomsnittlig forbruk:</p>
+        <p class="estimate">{{ estimated_usage }} kWh</p>
+    </div>
+    <div class="right">
+        <div class="article-content">
+
+
+            {% if energy_efficient == True %}
+            {% if good_or_bad == True %}
+            <p>Du har alt på stell</p>
+            {% endif %}
+            {% endif %}
+
+            {% if energy_efficient == False %}
+            {% if good_or_bad == True %}
+            <p>
+                Det ser ut til at du har et høyt energiforbruk, men det er flott at du har en god strømavtale. Det er
+                viktig
+                å ha
+                en avtale som gir deg en rimelig pris for strømmen du bruker. Samtidig bør du også vurdere å gjøre
+                endringer
+                i
+                ditt daglige energibruk for å redusere energiforbruket og spare penger på strømregningen. Små
+                endringer som
+                å
+                slå av lys når du forlater rommet, redusere temperaturen i huset når du ikke er hjemme eller skifte
+                til mer
+                energieffektive husholdningsapparater, kan bidra til å redusere energiforbruket ditt. På denne måten
+                kan du
+                få
+                mest mulig ut av din gode strømavtale og samtidig beskytte miljøet.
+
+                Basert på ditt energiforbruk, ser det ut til at boligen din ikke er så energieffektiv som den kunne
+                være.
+                Det er
+                et godt nytt at du kan gjøre noe med dette! Ved å ta enkle og praktiske skritt, kan du redusere
+                energiforbruket
+                i hjemmet ditt og spare penger på strømregningen samtidig som du bidrar til å beskytte miljøet. Små
+                tiltak
+                som å
+                bytte gamle lyspærer med LED-pærer, senke temperaturen i rom du ikke bruker, korte ned dusjtiden
+                osv...
+                Men la oss være ærlige, hvis du er her inne, har du sikkert gjort alle disse tiltakene, og fremdeles
+                sitter
+                du
+                og hutrer i kulden. Fordi boligen din ikke er oppusset på en god måte, og gardinene flagrer i
+                trekket fra
+                vinduene. Største varmetap kommer oftest fra dårlig isolerte vegger, gulv og tak. Det hjelper heller
+                ikke
+                dårlige varme skiller, som gamle panelovner fra 70-tallet. Eller en bereder som drypper i kjelleren.
+                Oppgraderinger som dette kan ha høye kortvarige kostnader, men de kan være lønnsomme på sikt. <a
+                    href='https://www.enova.no/privat/'>Enova</a> tilbyr råd og støtte for dette. Foreksempel Ved å
+                bytte
+                til en
+                smart
+                bereder, vil de dekke 5000 kroner av kostnaden. De tilbyr også andre støtter til oppgradering av
+                bolig.
+
+            </p>
+            {% endif %}
+            {% endif %}
+
+            {% if energy_efficient == True %}
+            {% if good_or_bad == False %}
+            <p>
+                Det er flott at du har en energieffektiv bolig, men det er synd å se at du fortsatt betaler for mye for
+                strømmen du bruker. Dersom du har en dårlig strømavtale, kan det være på tide å undersøke andre
+                alternativer
+                på markedet.
+                Du kan sammenligne strømavtaler du finner under, og finne den som passer best for deg og dine behov.
+                På denne måten kan du sikre deg at du betaler minst mulig for strømmen du bruker. En god avtale vil
+                gjøre at
+                du
+                får mest mulig ut av investeringene dine i energieffektivisering, og at du kan spare penger på
+                strømregningen
+                samtidig som du bidrar til miljøet.
+            </p>
+            {% endif %}
+            {% endif %}
+
+            {% if energy_efficient == False %}
+            {% if good_or_bad == False %}
+            <p>Du betaler formye for strømmen din, og basert på ditt energiforbruk, ser det ut til at boligen din ikke
+                er så energieffektiv som den kunne
+                være.
+                Det er
+                et godt nytt at du kan gjøre noe med dette! Ved å ta enkle og praktiske skritt, kan du redusere
+                energiforbruket
+                i hjemmet ditt og spare penger på strømregningen samtidig som du bidrar til å beskytte miljøet. Små
+                tiltak
+                som å
+                bytte gamle lyspærer med LED-pærer, senke temperaturen i rom du ikke bruker, korte ned dusjtiden
+                osv...
+                Men la oss være ærlige, hvis du er her inne, har du sikkert gjort alle disse tiltakene, og fremdeles
+                sitter
+                du
+                og hutrer i kulden. Fordi boligen din ikke er oppusset på en god måte, og gardinene flagrer i
+                trekket fra
+                vinduene. Største varmetap kommer oftest fra dårlig isolerte vegger, gulv og tak. Det hjelper heller
+                ikke
+                dårlige varme skiller, som gamle panelovner fra 70-tallet. Eller en bereder som drypper i kjelleren.
+                Oppgraderinger som dette kan ha høye kortvarige kostnader, men de kan være lønnsomme på sikt. <a
+                    href='https://www.enova.no/privat/'>Enova</a> tilbyr råd og støtte for dette. Foreksempel Ved å
+                bytte
+                til en
+                smart
+                bereder, vil de dekke 5000 kroner av kostnaden. De tilbyr også andre støtter til oppgradering av
+                bolig.</p>
+            {% endif %}
+            {% endif %}
 
 
 
-    <h1>Estimater</h1>
-    <p>Hva du burde bestalt basert på ditt forbruk og spot pris {{ total_cost_based_on_spot }} Kr</p>
-    <p>Estimert forbruk basert på din bolig størrelse {{ estimated_usage }} kWh</p>
-    {% if energy_efficient %}
-    {% if good_or_bad %}
-    <p>Det er flott at du har en energieffektiv bolig, men det er synd å se at du fortsatt betaler for mye for strømmen
-        du bruker. Dersom du har en dårlig strømavtale, kan det være på tide å undersøke andre alternativer på markedet.
-        Du kan sammenligne strømavtaler du finner under, og finne den som passer best for deg og dine behov. På denne
-        måten kan du sikre
-        deg at du betaler minst mulig for strømmen du bruker. En god avtale vil gjøre at du
-        får mest mulig ut av investeringene dine i energieffektivisering, og at du kan spare penger på strømregningen
-        samtidig som du bidrar til miljøet.
-        {% else %}
-    <p>Du har en god avtale</p>
-    {% endif %}
-    </p>
-    {% else %}
-    <p>
-        Basert på ditt energiforbruk, ser det ut til at boligen din ikke er så energieffektiv som den kunne være. Det er
-        et godt nytt at du kan gjøre noe med dette! Ved å ta enkle og praktiske skritt, kan du redusere energiforbruket
-        i hjemmet ditt og spare penger på strømregningen samtidig som du bidrar til å beskytte miljøet. Små tiltak som å
-        bytte gamle lyspærer med LED-pærer, senke temperaturen i rom du ikke bruker, korte ned dusjtiden osv...
-        Men la oss være ærlige, hvis du er her inne, har du sikkert gjort alle disse tiltakene, og fremdeles sitter du
-        og hutrer i kulden. Fordi boligen din ikke er oppusset på en god måte, og gardinene flagrer i trekket fra
-        vinduene. Største varmetap kommer oftest fra dårlig isolerte vegger, gulv og tak. Det hjelper heller ikke
-        dårlige varme skiller, som gamle panelovner fra 70-tallet. Eller en bereder som drypper i kjelleren.
-        Oppgraderinger som dette kan ha høye kortvarige kostnader, men de kan være lønnsomme på sikt. <a
-            href='https://www.enova.no/privat/'>Enova</a> tilbyr råd og støtte for dette. Foreksempel Ved å bytte til en
-        smart
-        bereder, vil de dekke 5000 kroner av kostnaden. De tilbyr også andre støtter til oppgradering av bolig.
-    </p>
-    {% endif %}
-    {% if not(good_or_bad) %}
-    <p>Det ser ut til at du har et høyt energiforbruk, men det er flott at du har en god strømavtale. Det er viktig å ha
-        en avtale som gir deg en rimelig pris for strømmen du bruker. Samtidig bør du også vurdere å gjøre endringer i
-        ditt daglige energibruk for å redusere energiforbruket og spare penger på strømregningen. Små endringer som å
-        slå av lys når du forlater rommet, redusere temperaturen i huset når du ikke er hjemme eller skifte til mer
-        energieffektive husholdningsapparater, kan bidra til å redusere energiforbruket ditt. På denne måten kan du få
-        mest mulig ut av din gode strømavtale og samtidig beskytte miljøet.</p>
-    {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+<h1>Dine Kosnader Hos Andre Levrandører</h1>
+<div class="container">
+    <div class="left">
+        <iframe width="600" height="450"
+            src="https://lookerstudio.google.com/embed/reporting/ca824702-0277-4d38-b9e0-b606996d3ed4/page/IZAFD"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="right">
+        <div class="article-content">
+            <h2>Øst Energi</h2>
+            <p>
+                <!--Her er nokk ikke utregningen rett, men er ikke så kjent med Looker. Må forbedres seinere-->
+                Øst Energi tilbyr variabel pris: Variable prisavtaler gir varsel om endringer i pris hver 14. dag. Øst
+                Energi
+                endrer sin pris to ganger i månden.
+                I praksis betyr det at strømprisen følger markedsprisen, to uker på etterskudd. Dette sikrer at man blir
+                skånet
+                for de
+                aller største prisendringene, samtidig som strømprisen fortsatt påvirkes av strømmarkedet. Variabel pris
+                har
+                også vist seg å være noe dyrere enn spotpris i gjennomsnitt. De har også måndespris/medlemspris på kr
+                35.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <iframe width="600" height="450"
+            src="https://lookerstudio.google.com/embed/reporting/ec6e0b4c-0dee-4f05-8b18-b23ac61a9f5a/page/bZAFD"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="right">
+        <div class="article-content">
+            <h2>Nord Energi</h2>
+            <p>
+                Nord Energi tilbyr spotpris: Markedsprisen på strøm endrer seg gjennom året, og strømregningen din vil
+                variere
+                etter disse svingningene. Du må forvente høyere pris i vinterhalvåret, men kan nyte godt av lave
+                strømpriser
+                om
+                sommeren. Spotpris har vist seg å være billigst i gjennomsnitt de siste årene.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left">
+        <iframe width="600" height="450"
+            src="https://lookerstudio.google.com/embed/reporting/35f60ac1-5048-4b4c-88f0-445e29e27592/page/xZAFD"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="right">
+        <div class="article-content">
+            <h2>Sør Energi</h2>
+            <p>
+                Sør Energi tilbyr måndelig gjennomsnitt spotpris, de har også en mådelig avgift på kr 25.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left">
+        <iframe width="600" height="450"
+            src="https://lookerstudio.google.com/embed/reporting/19101670-90f3-4600-ac89-23145ff907ab/page/AYAFD"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="right">
+        <div class="article-content">
+            <h2>Vest Energi</h2>
+            <p>
+                Vest Energi tilbyr fast pris på en 12 månders periode: Variable prisavtaler gir varsel om endringer
+                i pris
+                hver
+                14. dag. I praksis betyr det at strømprisen følger markedsprisen, to uker på etterskudd. Dette
+                sikrer at man
+                blir skånet for de aller største prisendringene, samtidig som strømprisen fortsatt påvirkes av
+                strømmarkedet.
+                Variabel pris har også vist seg å være noe dyrere enn spotpris i gjennomsnitt.
+            </p>
+        </div>
+    </div>
+</div>
 
 
 
 
+<h1>Pris Sammenligning</h1>
 
-    <h1>Dine Kosnader Hos Andre Levrandører</h1>
-    <iframe width="600" height="450"
-        src="https://lookerstudio.google.com/embed/reporting/ca824702-0277-4d38-b9e0-b606996d3ed4/page/IZAFD"
-        frameborder="0" style="border:0" allowfullscreen></iframe>
-    <p>
-        <!--Her er nokk ikke utregningen rett, men er ikke så kjent med Looker. Må forbedres seinere-->
-        Øst Energi tilbyr variabel pris: Variable prisavtaler gir varsel om endringer i pris hver 14. dag. Øst Energi
-        endrer sin pris to ganger i månden.
-        I praksis betyr det at strømprisen følger markedsprisen, to uker på etterskudd. Dette sikrer at man blir skånet
-        for de
-        aller største prisendringene, samtidig som strømprisen fortsatt påvirkes av strømmarkedet. Variabel pris har
-        også vist seg å være noe dyrere enn spotpris i gjennomsnitt. De har også måndespris/medlemspris på kr 35.
-    </p>
-    <iframe width="600" height="450"
-        src="https://lookerstudio.google.com/embed/reporting/ec6e0b4c-0dee-4f05-8b18-b23ac61a9f5a/page/bZAFD"
-        frameborder="0" style="border:0" allowfullscreen></iframe>
-    <p>
-        Nord Energi tilbyr spotpris: Markedsprisen på strøm endrer seg gjennom året, og strømregningen din vil variere
-        etter disse svingningene. Du må forvente høyere pris i vinterhalvåret, men kan nyte godt av lave strømpriser om
-        sommeren. Spotpris har vist seg å være billigst i gjennomsnitt de siste årene.
-    </p>
 
-    <iframe width="600" height="450"
-        src="https://lookerstudio.google.com/embed/reporting/35f60ac1-5048-4b4c-88f0-445e29e27592/page/xZAFD"
-        frameborder="0" style="border:0" allowfullscreen></iframe>
-    <p>
-        Sør Energi tilbyr måndelig gjennomsnitt spotpris, de har også en mådelig avgift på kr 25.
-    </p>
+<iframe width="900" height="700"
+    src="https://lookerstudio.google.com/embed/reporting/a995f42f-7bc6-4621-b5aa-0d6319ac2398/page/dACFD"
+    frameborder="0" style="border:0" allowfullscreen></iframe>
 
-    <iframe width="600" height="450"
-        src="https://lookerstudio.google.com/embed/reporting/19101670-90f3-4600-ac89-23145ff907ab/page/AYAFD"
-        frameborder="0" style="border:0" allowfullscreen></iframe>
-    <p>
-        Vest Energi tilbyr fast pris på en 12 månders periode: Variable prisavtaler gir varsel om endringer i pris hver
-        14. dag. I praksis betyr det at strømprisen følger markedsprisen, to uker på etterskudd. Dette sikrer at man
-        blir skånet for de aller største prisendringene, samtidig som strømprisen fortsatt påvirkes av strømmarkedet.
-        Variabel pris har også vist seg å være noe dyrere enn spotpris i gjennomsnitt.
-
-    </p>
-
-    <h1>Pris Sammenligning</h1>
-    <iframe width="600" height="450"
-        src="https://lookerstudio.google.com/embed/reporting/a995f42f-7bc6-4621-b5aa-0d6319ac2398/page/dACFD"
-        frameborder="0" style="border:0" allowfullscreen></iframe>
-
-</body>
+{% endblock %}
 
 </html>
