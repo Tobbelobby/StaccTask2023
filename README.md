@@ -36,6 +36,14 @@ git clone https://github.com/Tobbelobby/StaccTask2023.git
 
 
 ```
+Move in to the flaskApplication folder
+
+
+```console
+
+cd path/to/folder
+
+```
 
 Install all the dependence, but first make a virtual environment
 ```console 
@@ -57,14 +65,7 @@ pip install -r requirements.txt
 
 ```
 
-Move in to the flaskApplication folder
-
-
-```console
-
-cd path/to/folder
-
-```
+Run the application 
 
 ```console
 
