@@ -9,9 +9,9 @@ from RESTapi import *
 app = Flask(__name__)
 api = Api(app)
 
-property_size_interval = ['45','60','60','70','70','85','85','90',
-                              '90','110','110','120','120','140',
-                              '140','150','150','180','180','200']
+property_size_interval = ['45','60','70','85','90',
+                         '110','120','140','150',
+                         '160','170','180','190','200']
 
 db_property = DataManager('db/property_type.json')
 db = db_property.read_data() 
